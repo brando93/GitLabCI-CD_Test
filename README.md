@@ -4,10 +4,6 @@ GitLabCI-CD_Test
 ```
 .gitlab-ci.yml
 
-stages: 
-    - .pre
-    - build
-    - test
 
 build website:
     image: node:16-alpine
