@@ -1,7 +1,4 @@
-stages: 
-    - .pre
-    - build
-    - test
+
 
 build website:
     image: node:16-alpine
