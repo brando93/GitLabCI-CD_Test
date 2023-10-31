@@ -4,6 +4,11 @@ GitLabCI-CD_Test
 ```
 .gitlab-ci.yml
 
+stages: 
+    - .pre
+    - build
+    - test
+    - deploy
 
 build website:
     image: node:16-alpine
@@ -15,7 +20,7 @@ build website:
         - yarn install
         - yarn build
 
-.linter:
+linter:
     image: node:16-alpine
     stage: .pre
     script:
@@ -32,7 +37,17 @@ test website:
         - sleep 10
         - curl http://localhost:3000 | grep -i "title"
 
-.unit tests:
+deploy to s3:
+    stage: deploy
+    image:
+        name: amazon/aws-cli:2.4.11
+        entrypoint: [""]
+    script:
+        - aws --version
+        - aws s3 sync build s3://$AWS_S3_BUCKET --delete
+
+
+unit tests:
     image: node:16-alpine
     stage: .pre
     script:
