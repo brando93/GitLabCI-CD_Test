@@ -2,7 +2,6 @@
 
 .gitlab-ci.yml
 
-
 stages: 
     - .pre
     - build
